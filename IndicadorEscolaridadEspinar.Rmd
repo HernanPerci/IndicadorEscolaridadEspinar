@@ -1,0 +1,64 @@
+---
+title: Promedio de años de escolaridad en la provincia de Espinar, Cusco.
+author: "Hernan Perci Nuñez Palomino"
+date: "7/10/2020"
+output: html_document
+---
+
+Este es un documento R Markdown. Mas detalles del estudio en:  <https://github.com/HernanPerci/IndicadorEscolaridadEspinar>.
+
+## Librerias usadas
+
+
+```{r}
+
+library(haven)
+library(tidyverse)
+library(skimr)
+library(knitr)
+
+```
+
+
+## Fuentes de datos
+
+### ENAHO educacion y salud 2019
+
+
+```{r}
+
+## Base educacion importado de microdatos
+
+Enaho2019_educacion <- read_sav("ENAHO educacion 2019/Enaho01A-2019-300.sav")
+
+```
+
+
+```{r}
+
+## variables de interes en la provincia de Espinar
+
+Enaho2019_educacion <- Enaho2019_educacion %>%
+  select(UBIGEO, P207, P301A, P301B, P301C)
+  filter(str_detect(UBIGEO, "^0808"))
+
+```
+
+
+```{r}
+
+## Exploración inicial de los datos
+
+glimpse(Enaho2019_educacion)
+kable(skim(Enaho2019_educacion))
+
+```
+
+
+## Por grupo de edades edades 25-34 (número de años) segun sexo en el periodo 2014-2019
+
+
+
+## Por grupo de edades edades 25-64 (número de años) segun sexo en el periodo 2014-2019
+
+
